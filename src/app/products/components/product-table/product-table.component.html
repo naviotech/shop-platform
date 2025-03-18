@@ -10,7 +10,7 @@
         </th>
         <th>Título</th>
         <th>Precio</th>
-        <th>Stock</th>
+        <th class="hidden sm:flex">Stock</th>
         <th></th>
       </tr>
     </thead>
@@ -50,7 +50,7 @@
           {{ product.price | currency : "EUR" }}
           <br />
         </td>
-        <td>
+        <td class="hidden sm:flex">
           @if(product.stock <=10) {
           <span class="badge badge-error">{{ product.stock }}</span>
           }@else if(product.stock <=20){
@@ -60,9 +60,10 @@
         </td>
         <th>
           <a
-            class="btn btn-ghost text-accent btn-xs"
+            class="btn btn-ghost text-accent btn-xs hidden sm:flex"
             [routerLink]="['/admin/product', product.id]"
-          >Detalles</a>
+            >Detalles</a
+          >
         </th>
       </tr>
       }

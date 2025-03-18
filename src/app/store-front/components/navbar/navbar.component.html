@@ -1,10 +1,10 @@
 <div class="navbar bg-base-100 shadow-sm">
-  <div class="navbar-start">
+  <div class="flex justify-between w-full sm:w-[50%] sm:justify-start sm:navbar-start">
     <div class="dropdown">
       <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
+          class="h-10 w-10"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -45,6 +45,27 @@
             >Niños</a
           >
         </li>
+        @if(userAuth()){
+          @if(authService.user()?.roles?.includes('admin')){
+          <li class="sm:hidden flex">
+            <a [routerLink]="['/admin']" class="btn text-accent">Admin</a>
+          </li>
+
+          }
+          <li class="sm:hidden flex">
+            <button class="btn btn-sm btn-error" (click)="authService.logout()">
+              Cerrar sesión
+            </button>
+          </li>
+
+          } @if(!userAuth()){
+          <li class="sm:hidden flex">
+            <a class="btn btn-secondary" [routerLink]="['/auth/login']"
+              >Iniciar sesión</a
+            >
+          </li>
+
+          }
       </ul>
     </div>
     <a routerLink="" class="btn btn-ghost text-xl"
@@ -80,7 +101,7 @@
       </li>
     </ul>
   </div>
-  <div class="navbar-end gap-4">
+  <div class="navbar-end gap-4 hidden sm:flex">
     @if(userAuth()){
     <button class="btn btn-ghost">{{ authService.user()?.fullName }}</button>
     @if(authService.user()?.roles?.includes('admin')){

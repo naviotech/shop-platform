@@ -1,19 +1,19 @@
-<h1 class="text-2xl font-bold">Listado de Productos</h1>
-<h3 class="text-lg">
+<h1 class="text-2xl font-bold text-center sm:text-start">Listado de Productos</h1>
+<h3 class="text-lg text-center sm:text-start">
   Productos totales
   <span class="text-accent">{{ productsResource.value()?.count }}</span>
 </h3>
 
 <div class="divider"></div>
-<div class="flex gap-2 items-center h-20 justify-between">
-  <div class="flex gap-2 items-center h-20">
+<div class="flex flex-col sm:flex-row sm:gap-2 items-center justify-between flex-wrap">
+  <div class="flex flex-col sm:flex-row sm:gap-2 items-center ">
     <app-pagination
       [totalpages]="productsResource.value()?.pages ?? 0"
       [currentPage]="paginationService.currentPage()"
     />
     <select
       #selectTotal
-      class="select select-bordered w-24"
+      class="select select-bordered w-24 hidden sm:flex"
       (change)="showTotalItems.set(+selectTotal.value)"
     >
       <option value="10">10</option>
@@ -23,7 +23,17 @@
     </select>
   </div>
 
-  <div>
+  <div class="flex flex-row gap-4 items-center my-6 sm:my-0">
+    <select
+    #selectTotal
+    class="select select-bordered w-24 sm:hidden"
+    (change)="showTotalItems.set(+selectTotal.value)"
+  >
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+  </select>
     <button class="btn btn-primary" [routerLink]="['/admin/product/new']">
       Nuevo producto
     </button>

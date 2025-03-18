@@ -1,5 +1,5 @@
 import { AuthService } from '@/auth/services/auth.service';
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, HostListener, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -13,4 +13,5 @@ export class AdminLayoutComponent {
   user = computed(() => {
     return this.authService.user();
   });
+  
 }
