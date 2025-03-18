@@ -1,0 +1,15 @@
+<h1 class="text-3xl font-bold font-montserrat mb-5 text-unknown">
+  Todos los productos
+</h1>
+<div
+  class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-2 gap-3 xl:gap-20"
+>
+  @for (product of productsResource.value()?.products; track product) {
+  <product-card [product]="product" />
+  }
+</div>
+
+<app-pagination
+  [totalpages]="productsResource.value()?.pages ?? 0"
+  [currentPage]="paginationService.currentPage()"
+/>
